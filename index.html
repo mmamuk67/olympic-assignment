@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Olympic Games Data Transfer</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header>
+    <h1>Olympic Games Data Transfer</h1>
+    <p>Explore participation, sports, and categories across different Olympic Games</p>
+  </header>
+
+  <section class="controls">
+    <input type="text" id="searchInput" placeholder="Search country or sport..." onkeyup="filterData()">
+    
+    <select id="gameFilter" onchange="filterData()">
+      <option value="ALL">All Games</option>
+      <option value="Winter Olympics">Winter Olympics</option>
+      <option value="Summer Olympics">Summer Olympics</option>
+      <option value="Paralympics">Paralympics</option>
+      <option value="Youth Olympic Games">Youth Olympic Games</option>
+    </select>
+
+    <select id="categoryFilter" onchange="filterData()">
+      <option value="ALL">All Categories</option>
+      <option value="Indoor">Indoor</option>
+      <option value="Outdoor">Outdoor</option>
+    </select>
+  </section>
+
+  <main class="grid-container" id="flagGrid"></main>
+
+  <div id="tooltip" class="tooltip"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>

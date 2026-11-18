@@ -1,0 +1,57 @@
+@model IEnumerable<olympic_assignment.Models.Ticket>
+
+@{
+    ViewData["Title"] = "Ticket List";
+}
+
+<h2>Ticket List</h2>
+
+<div class="mb-3">
+    <a asp-action="Add" class="btn btn-primary">Add Ticket</a>
+</div>
+
+<form method="get" asp-action="Index" class="mb-3">
+    <div class="row g-2 align-items-center">
+        <div class="col-auto">
+            <label for="statusFilter" class="col-form-label">Filter by Status:</label>
+        </div>
+        <div class="col-auto">
+            <select name="statusFilter" id="statusFilter" class="form-select" onchange="this.form.submit()">
+                <option value="all" selected="@(ViewBag.CurrentFilter == "all")">All</option>
+                <option value="todo" selected="@(ViewBag.CurrentFilter == "todo")">To Do</option>
+                <option value="in progress" selected="@(ViewBag.CurrentFilter == "in progress")">In Progress</option>
+                <option value="done" selected="@(ViewBag.CurrentFilter == "done")">Done</option>
+            </select>
+        </div>
+    </div>
+</form>
+
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Sprint</th>
+            <th>Points</th>
+            <th>Status</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var ticket in Model)
+        {
+            <tr>
+                <td>@ticket.Name</td>
+                <td>@ticket.Description</td>
+                <td>@ticket.SprintNumber</td>
+                <td>@ticket.PointValue</td>
+                <td>@ticket.Status</td>
+                <td>
+                    <form asp-action="Delete" asp-route-id="@ticket.Id" method="post" onsubmit="return confirm('Are you sure?');">
+                        <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

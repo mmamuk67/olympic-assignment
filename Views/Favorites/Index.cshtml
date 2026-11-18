@@ -1,0 +1,30 @@
+@model List<OlympicGames.Models.Country>
+
+@{
+    ViewData["Title"] = "My Favorites";
+}
+
+<h2>My Favorites</h2>
+
+@if (!Model.Any())
+{
+    <p>You have no favorite countries saved yet.</p>
+}
+else
+{
+    <ul class="list-group mb-3">
+        @foreach (var item in Model)
+        {
+            <li class="list-group-item d-flex align-items-center">
+                <img src="https://flagcdn.com/w40/@(item.CountryId).png" class="me-3" alt="@item.Name Flag">
+                <span><strong>@item.Name</strong> - @item.Game (@item.Sport)</span>
+            </li>
+        }
+    </ul>
+}
+
+<a asp-controller="Home" asp-action="Index" class="btn btn-primary">Return to Home Page</a>
+
+<form asp-controller="Favorites" asp-action="Clear" method="post" class="d-inline">
+    <button type="submit" class="btn btn-danger">Clear Favorites</button>
+</form>

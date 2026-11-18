@@ -1,0 +1,39 @@
+@model OlympicGames.Models.CountryViewModel
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center my-4">
+    <h2>Olympic Games Data Transfer</h2>
+    <p class="text-muted">Explore participation, sports, and categories across different Olympic Games</p>
+
+    <!-- Filter Buttons for Games -->
+    <div class="mb-3">
+        <a asp-action="Index" asp-route-activeGame="all" asp-route-activeCategory="@Model.ActiveCategory" class="btn btn-outline-dark @Model.CheckActiveGame("all")">All Games</a>
+        <a asp-action="Index" asp-route-activeGame="Winter" asp-route-activeCategory="@Model.ActiveCategory" class="btn btn-outline-dark @Model.CheckActiveGame("Winter")">Winter Olympics</a>
+        <a asp-action="Index" asp-route-activeGame="Summer" asp-route-activeCategory="@Model.ActiveCategory" class="btn btn-outline-dark @Model.CheckActiveGame("Summer")">Summer Olympics</a>
+    </div>
+
+    <!-- Filter Buttons for Categories -->
+    <div class="mb-4">
+        <a asp-action="Index" asp-route-activeGame="@Model.ActiveGame" asp-route-activeCategory="all" class="btn btn-outline-secondary @Model.CheckActiveCategory("all")">All Categories</a>
+        <a asp-action="Index" asp-route-activeGame="@Model.ActiveGame" asp-route-activeCategory="Indoor" class="btn btn-outline-secondary @Model.CheckActiveCategory("Indoor")">Indoor</a>
+        <a asp-action="Index" asp-route-activeGame="@Model.ActiveGame" asp-route-activeCategory="Outdoor" class="btn btn-outline-secondary @Model.CheckActiveCategory("Outdoor")">Outdoor</a>
+    </div>
+</div>
+
+<!-- Countries Grid -->
+<div class="row row-cols-1 row-cols-sm-3 row-cols-md-6 g-4">
+    @foreach (var country in Model.Countries)
+    {
+        <div class="col">
+            <div class="card h-100 text-center shadow-sm p-2">
+                <a asp-action="Details" asp-route-id="@country.CountryId">
+                    <img src="@country.FlagImage" class="card-img-top img-fluid" alt="@country.Name" style="height: 60px; object-fit: contain;" />
+                    <h6 class="card-title mt-2 mb-0">@country.Name</h6>
+                </a>
+            </div>
+        </div>
+    }
+</div>
