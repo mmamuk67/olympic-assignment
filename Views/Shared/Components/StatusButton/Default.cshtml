@@ -1,0 +1,8 @@
+@model olympic_assignment.Models.Ticket
+
+<form asp-controller="ToDo" asp-action="ChangeStatus" asp-route-id="@Model.Id" method="post" class="d-inline">
+    <input type="hidden" name="newStatus" value="@ViewBag.NextStatus" />
+    <button type="submit" class="btn @ViewBag.ButtonClass btn-sm" title="Click to advance to @ViewBag.NextStatus">
+        @ViewBag.DisplayLabel
+    </button>
+</form>

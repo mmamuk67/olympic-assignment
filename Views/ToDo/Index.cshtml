@@ -18,8 +18,9 @@
         <div class="col-auto">
             <select name="statusFilter" id="statusFilter" class="form-select" onchange="this.form.submit()">
                 <option value="all" selected="@(ViewBag.CurrentFilter == "all")">All</option>
-                <option value="todo" selected="@(ViewBag.CurrentFilter == "todo")">To Do</option>
+                <option value="to do" selected="@(ViewBag.CurrentFilter == "to do")">To Do</option>
                 <option value="in progress" selected="@(ViewBag.CurrentFilter == "in progress")">In Progress</option>
+                <option value="qa" selected="@(ViewBag.CurrentFilter == "qa")">Quality Assurance (QA)</option>
                 <option value="done" selected="@(ViewBag.CurrentFilter == "done")">Done</option>
             </select>
         </div>
@@ -45,7 +46,9 @@
                 <td>@ticket.Description</td>
                 <td>@ticket.SprintNumber</td>
                 <td>@ticket.PointValue</td>
-                <td>@ticket.Status</td>
+                <td>
+                    <vc:status-button ticket="ticket" />
+                </td>
                 <td>
                     <form asp-action="Delete" asp-route-id="@ticket.Id" method="post" onsubmit="return confirm('Are you sure?');">
                         <button type="submit" class="btn btn-danger btn-sm">Delete</button>

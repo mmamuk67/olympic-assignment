@@ -46,6 +46,18 @@ namespace olympic_assignment.Controllers
             return View(ticket);
         }
 
+        [HttpPost("changestatus/{id}")]
+        public IActionResult ChangeStatus(int id, string newStatus)
+        {
+            var ticket = _repository.GetTicketById(id);
+            if (ticket != null && !string.IsNullOrWhiteSpace(newStatus))
+            {
+                ticket.Status = newStatus;
+                _repository.Save();
+            }
+            return RedirectToAction("Index");
+        }
+
         [HttpPost("delete/{id}")]
         public IActionResult Delete(int id)
         {

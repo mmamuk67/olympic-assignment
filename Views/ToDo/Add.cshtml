@@ -35,10 +35,15 @@
 
     <div class="form-group mb-3">
         <label asp-for="Status"></label>
-        <input asp-for="Status" class="form-control" />
+        <select asp-for="Status" class="form-select">
+            <option value="To Do">To Do</option>
+            <option value="In Progress">In Progress</option>
+            <option value="QA">Quality Assurance (QA)</option>
+            <option value="Done">Done</option>
+        </select>
         <span asp-validation-for="Status" class="text-danger"></span>
     </div>
 
-    <button type="submit" class="btn btn-success">Save</button>
+    <button type="submit">Save</button>
     <a asp-action="Index" class="btn btn-secondary">Cancel</a>
 </form>
